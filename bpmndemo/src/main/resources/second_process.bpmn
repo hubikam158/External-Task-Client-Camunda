@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_14qh2tc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
+  <bpmn:process id="Second_process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1bl4h7e</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1bl4h7e" sourceRef="StartEvent_1" targetRef="Activity_0imo2ek" />
+    <bpmn:userTask id="Activity_0imo2ek" name="Add user data">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="nationality" label="kraj pochodzenia" type="string" />
+          <camunda:formField id="firstName" label="imie" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bl4h7e</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wadexk</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1wadexk" sourceRef="Activity_0imo2ek" targetRef="Activity_0156r4s" />
+    <bpmn:serviceTask id="Activity_0156r4s" name="Do sth" camunda:type="external" camunda:topic="userCheckNewCopy">
+      <bpmn:incoming>Flow_1wadexk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0uig0nx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1ozhmla">
+      <bpmn:incoming>Flow_1gnp7to</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0uig0nx" sourceRef="Activity_0156r4s" targetRef="Activity_1jcguqi" />
+    <bpmn:sequenceFlow id="Flow_1gnp7to" sourceRef="Activity_1jcguqi" targetRef="Event_1ozhmla" />
+    <bpmn:userTask id="Activity_1jcguqi" name="End">
+      <bpmn:incoming>Flow_0uig0nx</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gnp7to</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Second_process">
+      <bpmndi:BPMNEdge id="Flow_1gnp7to_di" bpmnElement="Flow_1gnp7to">
+        <di:waypoint x="670" y="117" />
+        <di:waypoint x="722" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uig0nx_di" bpmnElement="Flow_0uig0nx">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="570" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wadexk_di" bpmnElement="Flow_1wadexk">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bl4h7e_di" bpmnElement="Flow_1bl4h7e">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hwxvq3_di" bpmnElement="Activity_0imo2ek" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zjvu2i_di" bpmnElement="Activity_0156r4s" bioc:stroke="rgb(30, 136, 229)" bioc:fill="rgb(187, 222, 251)">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ozhmla_di" bpmnElement="Event_1ozhmla">
+        <dc:Bounds x="722" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00tqubo_di" bpmnElement="Activity_1jcguqi" bioc:stroke="rgb(229, 57, 53)" bioc:fill="rgb(255, 205, 210)">
+        <dc:Bounds x="570" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
